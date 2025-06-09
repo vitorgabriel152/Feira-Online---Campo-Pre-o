@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparador de Preços de Produtos da Agricultura Familiar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+       
+        /* Reset de estilos básicos */
+        * 
+        {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Estilo do Header */
+        header {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 2em 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+
+        header p {
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        /* Estilo da Barra de Navegação */
+        nav {
+            background-color: #388E3C;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 0 2em;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #2E7D32;
+            padding: 0.9em 2em;
+            border-radius: 4px;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 3em auto;
+            padding: 0 1.5em;
+        }
+
+        /* Estilo da Barra de Busca */
+        .search-bar {
+            background-color: #fff;
+            padding: 1.5em;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 1em;
+            margin-bottom: 2.5em;
+        }
+
+        .search-bar input[type="text"] {
+            flex-grow: 1;
+            padding: 0.8em;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .search-bar button {
+            background-color: #FFA000;
+            color: white;
+            border: none;
+            padding: 0.8em 1.5em;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: #FB8C00;
+        }
+
+        /* Estilo para a lista de produtos */
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2em;
+            margin-top: 2em;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 1.5em;
+            transition: transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-card h3 {
+            margin: 1em 0.5em 0.5em;
+            color: #388E3C;
+            font-size: 1.4em;
+        }
+
+        .product-card p {
+            margin: 0.5em 0.5em;
+            color: #666;
+            font-size: 1em;
+        }
+
+        .product-card .price {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #E67A00;
+            margin: 0.8em 0.5em;
+        }
+
+        .product-card .origin {
+            font-style: italic;
+            color: #777;
+            font-size: 0.85em;
+            margin-bottom: 1em;
+        }
+
+        .product-card .btn-compare {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 0.6em 1.5em;
+            border-radius: 4px;
+            cursor: pointer;
+           
+        .contact-info {
+            margin-top: 1em;
+            background-color: #f4f7f6;
+            padding: 1em;
+            border-radius: 8px;
+            
+        .contact-info {
+            margin-top: 1em;
+            background-color: #f4f7f6;
+            padding: 1em;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info h4 {
+            color: #388E3C;
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+        }
+
+        .contact-info p {
+            color: #555;
+            font-size: 1em;
+        }
+
+        /* Estilo do Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1.5em 0;
+            margin-top: 4em;
+            font-size: 0.9em;
+        }box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info h4 {
+            color: #388E3C;
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+        }
+
+        .contact-info p {
+            color: #555;
+            font-size: 1em;
+        }
+
+        /* Estilo do Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1.5em 0;
+            margin-top: 4em;
+            font-size: 0.9em;
+        }font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            margin-top: 1.5em;
+        }
+
+        .product-card .btn-compare:hover {
+            background-color: #388E3C;
+        }
+
+        .contact-info {
+            margin-top: 1em;
+            background-color: #f4f7f6;
+            padding: 1em;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info h4 {
+            color: #388E3C;
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+        }
+
+        .contact-info p {
+            color: #555;
+            font-size: 1em;
+        }
+
+        /* Estilo do Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1.5em 0;
+            margin-top: 4em;
+            font-size: 0.9em;
+        }
+        .hidden {
+    display: none !important;
+}
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    header p {
+        font-size: 1em;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        display: block;
+        padding: 0.8em;
+        font-size: 1em;
+    }
+
+    .search-bar {
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .search-bar input[type="text"],
+    .search-bar button {
+        width: 100%;
+        font-size: 1em;
+    }
+
+    .product-list {
+        grid-template-columns: 1fr;
+    }
+
+    .product-card img {
+        height: 150px;
+    }
+
+    .product-card h3 {
+        font-size: 1.2em;
+    }
+
+    .product-card p,
+    .product-card .price {
+        font-size: 1em;
+    }
+
+    .btn-compare {
+        font-size: 1em;
+        padding: 0.6em 1.2em;
+    }
+
+    .contact-info {
+        font-size: 0.95em;
+        padding: 1em;
+    }
+
+    footer {
+        font-size: 0.8em;
+        padding: 1em 0;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌱 Campo & Preço 🌾</h1>
+        <p>Conectando você aos melhores preços da agricultura familiar!</p>
+    </header>
+
+    <nav>
+        <a href="#produtos">Produtos</a>
+        <a href="#sobre">Sobre Nós</a>
+        <a href="#contato">Contato</a>
+        <a href="#contato-criadores">Fale Conosco</a>
+    </nav>
+
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar produtos (ex: tomate orgânico, mel, queijo artesanal...)">
+            <button>Pesquisar</button>
+        </div>
+
+        <section id="produtos">
+            <h2>Nossos Produtos em Destaque</h2>
+            <div class="product-list">
+                <div class="product-card">
+                    <img src="img/tomatoes-1561565_960_720.jpg" alt="Tomate Orgânico">
+                    <h3>Tomate Orgânico</h3>
+                    <p class="origin">Fazenda Verdejante - SP</p>
+                    <p>Tomates frescos, cultivados sem agrotóxicos.</p>
+                    <p class="price">R$ 7,50/kg</p>
+                    <button class="btn-compare">Ver Detalhes</button>
+
+                    <!-- Contato do Vendedor -->
+                    <div class="contact-info hidden">
+                        <h4>Contato do Vendedor:</h4>
+                        <p>Telefone: <a href="tel:+5511999999999">+55 11 99999-9999</a></p>
+                        <p>E-mail: <a href="mailto:contato@fazendaverdejante.com">contato@fazendaverdejante.com</a></p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="img/honey-bees-337695_1280.jpg" alt="Mel Puro">
+                    <h3>Mel Puro de Abelhas Nativas</h3>
+                    <p class="origin">Apiário Doce Néctar - MG</p>
+                    <p>Mel silvestre de alta qualidade, colhido de forma sustentável.</p>
+                    <p class="price">R$ 35,00/500g</p>
+                    <button class="btn-compare">Ver Detalhes</button>
+
+                    <!-- Contato do Vendedor -->
+                    <div class="contact-info hidden">
+                        <h4>Contato do Vendedor:</h4>
+                        <p>Telefone: <a href="tel:+5531998888888">+55 31 99888-8888</a></p>
+                        <p>E-mail: <a href="mailto:doce.nectar@apiario.com">doce.nectar@apiario.com</a></p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="img/istockphoto-901234434-612x612.jpg" alt="Queijo Artesanal">
+                    <h3>Queijo Minas Artesanal</h3>
+                    <p class="origin">Queijaria da Serra - MG</p>
+                    <p>Queijo tradicional, maturado, sabor intenso e marcante.</p>
+                    <p class="price">R$ 55,00/kg</p>
+                    <button class="btn-compare">Ver Detalhes</button>
+
+                    <!-- Contato do Vendedor -->
+                    <div class="contact-info hidden">
+                        <h4>Contato do Vendedor:</h4>
+                        <p>Telefone: <a href="tel:+5532997777777">+55 32 99777-7777</a></p>
+                        <p>E-mail: <a href="mailto:queijarias@serra.com">queijarias@serra.com</a></p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="img/istockphoto-465645566-2048x2048.jpg" alt="Ovos Caipiras">
+                    <h3>Ovos Caipiras Grandes</h3>
+                    <p class="origin">Sítio Feliz - RJ</p>
+                    <p>Ovos frescos de galinhas criadas soltas, com alimentação natural.</p>
+                    <p class="price">R$ 18,00/dúzia</p>
+                    <button class="btn-compare">Ver Detalhes</button>
+
+                    <!-- Contato do Vendedor -->
+                    <div class="contact-info hidden">
+                        <h4>Contato do Vendedor:</h4>
+                        <p>Telefone: <a href="tel:+5521996666666">+55 21 99666-6666</a></p>
+                        <p>E-mail: <a href="mailto:sitio.feliz@rural.com">sitio.feliz@rural.com</a></p>
+                    </div>
+                </div>
+            </div>
+        <section id="contato-criadores" style="margin-top: 4em;">
+            <h2>Fale com os Criadores do Site</h2>
+            <div style="background-color: #fff; padding: 2em; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); max-width: 700px; margin: 2em auto;">
+                <form>
+                    <div style="margin-bottom: 1em;">
+                        <label for="nome" style="display:block; margin-bottom: 0.5em; color: #388E3C;">Nome:</label>
+                        <input type="text" id="nome" name="nome" required style="width:100%; padding: 0.8em; border: 1px solid #ccc; border-radius: 4px;">
+                    </div>
+                    <div style="margin-bottom: 1em;">
+                        <label for="email" style="display:block; margin-bottom: 0.5em; color: #388E3C;">E-mail:</label>
+                        <input type="email" id="email" name="email" required style="width:100%; padding: 0.8em; border: 1px solid #ccc; border-radius: 4px;">
+                    </div>
+                    <div style="margin-bottom: 1.5em;">
+                        <label for="mensagem" style="display:block; margin-bottom: 0.5em; color: #388E3C;">Mensagem:</label>
+                        <textarea id="mensagem" name="mensagem" rows="5" required style="width:100%; padding: 0.8em; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+                    </div>
+                    <button type="submit" style="background-color: #4CAF50; color: white; border: none; padding: 0.8em 1.5em; border-radius: 4px; cursor: pointer; font-size: 1em;">
+                        Enviar Mensagem
+                    </button>
+                </form>
+            </div>
+        </section>
+        
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Campo & Preço. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Seleciona todos os botões "Ver Detalhes"
+        const buttons = document.querySelectorAll('.btn-compare');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const contactInfo = button.nextElementSibling;
+                contactInfo.classList.toggle('hidden');
+                button.textContent = contactInfo.classList.contains('hidden') ? 'Ver Detalhes' : 'Ocultar Detalhes';
+            });
+        });
+    </script>
+</body>
